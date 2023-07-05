@@ -1,3 +1,5 @@
+import { ITEM_ADDED } from './actions'
+
 let id = 1;
 
 export const initialItems = [
@@ -6,7 +8,14 @@ export const initialItems = [
 ];
 
 export const reducer = (state = initialItems, action) => {
-  return state;
+  switch(action.type) {
+    case ITEM_ADDED:
+      const item = { uuid: id++, quantity: 1, ...action.payload};
+      return [...state, item];
+
+    default:
+      return state
+  }
 };
 
 export default reducer;
