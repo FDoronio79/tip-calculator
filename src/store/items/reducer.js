@@ -1,4 +1,4 @@
-import { ITEM_ADDED, ITEM_DELETED, ITEM_PRICE_UPDATED } from './actions'
+import { ITEM_ADDED, ITEM_DELETED, ITEM_PRICE_UPDATED, ITEM_QUANTITY_UPDATED } from './actions'
 
 let id = 1;
 
@@ -20,10 +20,18 @@ export const reducer = (state = initialItems, action) => {
     case ITEM_PRICE_UPDATED:
       return state.map((item) => {
         if (item.uuid === action.payload.uuid) {
-          return {...state, price: action.payload.price}
+          return {...item, price: action.payload.price}
         }
         return item;
       });
+
+      case ITEM_QUANTITY_UPDATED:
+        return state.map((item) => {
+          if (item.uuid === action.payload.uuid) {
+            return {...item, quantity: action.payload.quantity}
+          }
+          return item;
+        })
 
     default:
       return state

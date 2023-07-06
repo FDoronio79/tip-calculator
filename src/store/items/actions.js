@@ -29,3 +29,13 @@ export const updatePrice = (uuid, price) => {
         }
     };
 };
+
+export const updateQuantity = (uuid, quantity) => {
+    return {
+        type: ITEM_QUANTITY_UPDATED,
+        payload: {
+            uuid,
+            quantity
+        }
+    }
+}
